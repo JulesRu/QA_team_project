@@ -1,4 +1,4 @@
-package ru.netology;
+ package ru.netology;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +29,7 @@ public class GameStore {
      * Проверяет наличие игры в каталоге и возврашает true
      * если игра есть и false иначе
      */
-    public boolean containsGame(Game game) {
+   public boolean containsGame(Game game) {
         for (int i = 1; i < games.size(); i++) {
             if (games.get(i-1).equals(game)) {
                 return true;
@@ -43,7 +43,7 @@ public class GameStore {
      * за игрой этого каталога. Игрок задаётся по имени. Время должно
      * суммироваться с прошлым значением для этого игрока
      */
-    public void addPlayTime(String playerName, int hours) {
+   public void addPlayTime(String playerName, int hours) {
         if (playedTime.containsKey(playerName)) {
             playedTime.put(playerName, playedTime.get(playerName));
         } else {
@@ -73,7 +73,7 @@ public class GameStore {
      * за играми этого каталога
      */
     public int getSumPlayedTime() {
-
         return 0;
     }
 }
+
