@@ -1,6 +1,8 @@
 package ru.netology;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -56,12 +58,26 @@ public class PlayerTest {
         GameStore store = new GameStore();
         Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
         Player player = new Player("Kolya");
-        game.getStore().addPlayTime("Kolya", 2);
         player.installGame(game);
+        game.getStore().addPlayTime("Kolya", 2);
+
 
         int expected = 3;
         int actual = player.play(game, 1);
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void mostPlayedByGenre1Game() {
+        GameStore store = new GameStore();
+        Game game = store.publishGame("CS", "Шутеры");
+        Player player = new Player("Will");
+        player.installGame(game);
+        game.getStore().addPlayTime("Will", 3);
+
+        Game expected = game;
+        Game actual = player.mostPlayerByGenre("Шутеры");
+        Assertions.assertEquals(expected, actual);
     }
 
 }
