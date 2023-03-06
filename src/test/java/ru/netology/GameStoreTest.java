@@ -1,6 +1,8 @@
 package ru.netology;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,16 @@ import java.util.List;
 public class GameStoreTest {
 
     List<Game> games = new ArrayList<>();
+
+    @Test
+    public void shouldNotAddGamePublishedAlready() {
+        GameStore store = new GameStore();
+        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+
+        Assertions.assertThrows(RuntimeException.class, () -> {
+            store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        });
+    }
 
     @Test
     public void shouldAddGame() {

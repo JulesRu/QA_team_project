@@ -59,7 +59,7 @@ public class Player {
      */
     public int sumGenre(String genre) {
         int sum = 0;
-        for (Game game : playedTime.containsKey()) {
+        for (Game game : playedTime.keySet()) {
             if (game.getGenre().equals(genre)) {
                 sum += playedTime.get(game);
             } else {
