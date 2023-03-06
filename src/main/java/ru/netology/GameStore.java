@@ -21,8 +21,8 @@ public class GameStore {
      */
     public Game publishGame(String title, String genre) {
         Game game = new Game(title, genre, this);
-        games.add(game);
-        return game;
+            games.add(game);
+            return game;
     }
 
     /**
@@ -31,7 +31,7 @@ public class GameStore {
      */
     public boolean containsGame(Game game) {
         for (int i = 1; i < games.size(); i++) {
-            if (games.get(i - 1).equals(game)) {
+            if (games.get(i-1).equals(game)) {
                 return true;
             }
         }
@@ -45,7 +45,7 @@ public class GameStore {
      */
     public void addPlayTime(String playerName, int hours) {
         if (playedTime.containsKey(playerName)) {
-            playedTime.put(playerName, playedTime.get(playerName)+hours);
+            playedTime.put(playerName, playedTime.get(playerName));
         } else {
             playedTime.put(playerName, hours);
         }
