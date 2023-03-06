@@ -1,7 +1,10 @@
 package ru.netology;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +23,15 @@ public class GameStoreTest {
     }
 
     @Test
+    public void shouldAddNonGame() {
+
+        GameStore store = new GameStore();
+        Game game = null;
+
+        assertFalse(store.containsGame(game));
+    }
+
+    @Test
     public void shouldAddGameSome() {
 
         GameStore store = new GameStore();
@@ -35,10 +47,10 @@ public class GameStoreTest {
         GameStore store = new GameStore();
 
         Game game1 = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        games.remove(game1);
         Game game2 = store.publishGame("Не уволься", "Аркады");
-        games.remove(game2);
 
-        assertFalse(store.containsGame(game2));
+        assertTrue(store.containsGame(game1));
 
     }
 
@@ -87,5 +99,51 @@ public class GameStoreTest {
         assertTrue(store.getMostPlayer() == "Jules");
 
     }
+
+    @Test
+    public void getSumPlayedTimeFivePlayer() {
+        GameStore store = new GameStore();
+
+        store.addPlayTime("Ivan", 2);
+        store.addPlayTime("Jules", 1);
+        store.addPlayTime("Kolya", 0);
+        store.addPlayTime("Jules", 1);
+        store.addPlayTime("Petya", 5);
+
+
+        int expected = 9;
+        int actual = store.getSumPlayedTime();
+
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void getSumPlayedTimeOnePlayer() {
+        GameStore store = new GameStore();
+
+        store.addPlayTime("Jules", 1);
+
+        int expected = 1;
+        int actual = store.getSumPlayedTime();
+
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void getSumPlayedTimeOnePlayerNonPlayedTime() {
+        GameStore store = new GameStore();
+
+        store.addPlayTime("Jules", 0);
+
+        int expected = 0;
+        int actual = store.getSumPlayedTime();
+
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+
 }
 
