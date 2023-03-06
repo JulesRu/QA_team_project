@@ -21,7 +21,12 @@ public class GameStore {
      */
     public Game publishGame(String title, String genre) {
         Game game = new Game(title, genre, this);
-        games.add(game);
+        if (!containsGame(game) == true) {
+            games.add(game);
+        } else {
+            RuntimeException e = new RuntimeException("Игра была установлена " + game);
+            throw e;
+        }
         return game;
     }
 
@@ -81,3 +86,4 @@ public class GameStore {
     }
 
 }
+

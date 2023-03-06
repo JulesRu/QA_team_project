@@ -14,6 +14,16 @@ public class GameStoreTest {
     List<Game> games = new ArrayList<>();
 
     @Test
+    public void shouldNotAddGamePublishedAlready() {
+        GameStore store = new GameStore();
+        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+
+        Assertions.assertThrows(RuntimeException.class, () -> {
+            store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        });
+    }
+
+    @Test
     public void shouldAddGame() {
 
         GameStore store = new GameStore();
@@ -70,7 +80,6 @@ public class GameStoreTest {
         GameStore store = new GameStore();
 
         store.addPlayTime("Ivan", 1);
-
 
         assertTrue(store.getMostPlayer() == "Ivan");
 
