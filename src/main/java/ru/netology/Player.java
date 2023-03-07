@@ -32,7 +32,6 @@ public class Player {
             playedTime.put(game, 0);
         } else {
             throw new RuntimeException("Эта игра " + game + " уже добавлена в Ваш каталог."
-
             );
         }
     }
@@ -77,6 +76,7 @@ public class Player {
      * Метод принимает жанр и возвращает игру этого жанра, в которую играли больше всего
      * Если в игры этого жанра не играли, возвращается null
      */
+
     public Game mostPlayerByGenre(String genre) {
         int mostTime = 0;
         Game mostPlayedByGenre = null;
