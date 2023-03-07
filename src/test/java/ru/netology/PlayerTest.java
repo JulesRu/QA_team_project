@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PlayerTest {
 
@@ -15,9 +16,10 @@ public class PlayerTest {
         Player player = new Player("Will");
         player.installGame(game);
         player.play(game, 3);
-        player.installGame(game);
 
-        Assertions.assertEquals(4, player.play(game, 1));
+
+        assertThrows(RuntimeException.class, () ->
+                player.installGame(game));
     }
 
     @Test
