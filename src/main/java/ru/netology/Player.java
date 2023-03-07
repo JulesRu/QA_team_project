@@ -26,9 +26,7 @@ public class Player {
      * если игра уже была, никаких изменений происходить не должно
      */
     public void installGame(Game game) {
-        if (game.equals(game)) {
             playedTime.put(game, 0);
-        }
     }
 
     /**
@@ -39,11 +37,6 @@ public class Player {
      * если игра не была установлена, то надо выкидывать RuntimeException
      */
     public int play(Game game, int hours) {
-        if (game.getTitle().equals(game)) {
-            throw new RuntimeException(
-                    "Эта игра не была установлена."
-            );
-        }
         game.getStore().addPlayTime(name, hours);
         if (playedTime.containsKey(game)) {
             playedTime.put(game, playedTime.get(game));
