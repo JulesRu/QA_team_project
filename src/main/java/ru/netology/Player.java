@@ -14,10 +14,12 @@ public class Player {
     private Map<Game, Integer> playedTime = new HashMap<>();
 
     public Player(String name) {
+
         this.name = name;
     }
 
     public String getName() {
+
         return name;
     }
 
@@ -26,7 +28,12 @@ public class Player {
      * если игра уже была, никаких изменений происходить не должно
      */
     public void installGame(Game game) {
+        if (!playedTime.containsKey(game)) {
             playedTime.put(game, 0);
+        } else {
+            throw new RuntimeException("Эта игра " + game + " уже добавлена в Ваш каталог."
+            );
+        }
     }
 
     /**
@@ -37,9 +44,12 @@ public class Player {
      * если игра не была установлена, то надо выкидывать RuntimeException
      */
     public int play(Game game, int hours) {
+        if (!playedTime.containsKey(game)) {
+            throw new RuntimeException("Эта игра не была установлена.");
+        }
         game.getStore().addPlayTime(name, hours);
         if (playedTime.containsKey(game)) {
-            playedTime.put(game, playedTime.get(game));
+            playedTime.put(game, playedTime.get(game) + hours);
         } else {
             playedTime.put(game, hours);
         }
@@ -66,16 +76,19 @@ public class Player {
      * Метод принимает жанр и возвращает игру этого жанра, в которую играли больше всего
      * Если в игры этого жанра не играли, возвращается null
      */
-    public String mostPlayerByGenre(String genre) {
+
+    public Game mostPlayerByGenre(String genre) {
         int mostTime = 0;
-        String mostPlayed = null;
+        Game mostPlayedByGenre = null;
         for (Game game : playedTime.keySet()) {
-            int time = playedTime.get(genre);
-            if (time > mostTime) {
-                mostTime = time;
-                mostPlayed = game.getTitle();
+            if (game.getGenre().equals(genre)) {
+                int playerTime = playedTime.get(game);
+                if (playerTime > mostTime) {
+                    mostTime = playerTime;
+                    mostPlayedByGenre = game;
+                }
             }
         }
-        return mostPlayed;
+        return mostPlayedByGenre;
     }
 }

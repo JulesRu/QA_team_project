@@ -61,7 +61,6 @@ public class GameStoreTest {
         Game game2 = store.publishGame("Не уволься", "Аркады");
 
         assertTrue(store.containsGame(game1));
-
     }
 
     @Test
@@ -72,7 +71,6 @@ public class GameStoreTest {
 
 
         assertTrue(store.getMostPlayer() == null);
-
     }
 
     @Test
@@ -82,7 +80,6 @@ public class GameStoreTest {
         store.addPlayTime("Ivan", 1);
 
         assertTrue(store.getMostPlayer() == "Ivan");
-
     }
 
     @Test
@@ -106,7 +103,6 @@ public class GameStoreTest {
 
 
         assertTrue(store.getMostPlayer() == "Jules");
-
     }
 
     @Test
@@ -124,7 +120,6 @@ public class GameStoreTest {
         int actual = store.getSumPlayedTime();
 
         Assertions.assertEquals(expected, actual);
-
     }
 
     @Test
@@ -137,7 +132,6 @@ public class GameStoreTest {
         int actual = store.getSumPlayedTime();
 
         Assertions.assertEquals(expected, actual);
-
     }
 
     @Test
@@ -150,9 +144,6 @@ public class GameStoreTest {
         int actual = store.getSumPlayedTime();
 
         Assertions.assertEquals(expected, actual);
-
     }
-
-
 }
 
